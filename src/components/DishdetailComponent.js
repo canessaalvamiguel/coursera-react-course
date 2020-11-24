@@ -112,7 +112,8 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
         }    
         
         handleSubmit(values) {    
-            this.toggleModal();    
+            this.toggleModal();
+            this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
             console.log('Current State is: ' + JSON.stringify(values));
             alert('Current State is: ' + JSON.stringify(values));   
         }
