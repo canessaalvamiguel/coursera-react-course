@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Card, CardImg, CardBody, CardText, CardTitle, Button, Breadcrumb, BreadcrumbItem, Modal, ModalHeader, ModalBody, Label, Row, Col } from "reactstrap";
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Loading } from './LoadingComponent';
 
     function RenderDish({dish}) {
         if (dish != null) {
@@ -54,7 +55,23 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
     const Dishdetail = (props) =>{       
         console.log(props.dish);
 
-        if(props.dish != null){
+        if (props.isLoading) {
+            return(
+                <div className="container">
+                    <div className="row">            
+                        <Loading />
+                    </div>
+                </div>
+            );
+        }else if (props.errMess) {
+            return(
+                <div className="container">
+                    <div className="row">            
+                        <h4>{props.errMess}</h4>
+                    </div>
+                </div>
+            );
+        }else if (props.dish != null) {
             return(
                 <div className="container">
                     <div className="row">
